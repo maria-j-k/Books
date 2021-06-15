@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from api.models import Author, Book, Category, Rating
+from api.models import Author, Book, Category
 
 class AuthorAdmin(admin.ModelAdmin):
     pass
@@ -20,8 +20,3 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 
-
-class RatingAdmin(admin.ModelAdmin):
-    pass
-
-admin.site.register(Rating, RatingAdmin)
