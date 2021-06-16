@@ -17,9 +17,9 @@ from django.contrib import admin
 from django.urls import include, path
 
 from Books.api_routes import router
-
+#from api.views import DbView
 
 urlpatterns = [
-    path('', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('', include(router.urls)),
 ]

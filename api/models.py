@@ -1,9 +1,33 @@
 from django.db import models
 
-# Create your models here.
+
+class AuthorManager(models.Manager):
+
+    def create(self, name):
+        author = Author.objects.filter(name=name).first()
+        if author:
+            return author
+        else:
+            author = Author(name=name)
+            author.save()
+        return author
+
+
+class CategoryManager(models.Manager):
+
+    def create(self, name):
+        category = Category.objects.filter(name=name).first()
+        if category:
+            return category
+        category = Category(name=name)
+        category.save()
+        return category
+
+
 class Author(models.Model):
-    name = models.CharField(max_length=255)
-    
+    name = models.CharField(max_length=255, unique=True)
+    objects = AuthorManager()
+
     class Meta:
         ordering = ['name']
 
@@ -12,16 +36,17 @@ class Author(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=100, unique=True)
+    objects = CategoryManager()
 
     def __str__(self):
         return self.name
 
 
-
 class Book(models.Model):
+    id = models.CharField(primary_key=True, editable=False, max_length=100)
     title = models.CharField(max_length=255)
-    published_date = models.IntegerField()
+    published_date = models.CharField(max_length=10, blank=True)
     thumbnail =  models.URLField(blank=True)
     authors = models.ManyToManyField(Author)
     categories = models.ManyToManyField(Category)
@@ -30,20 +55,4 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
-    
 
-
-
-
-
-#{
-#    "title": "Hobbit czyli Tam i z powrotem",
-#    "authors": ["J. R. R. Tolkien"],
-#    "published_date": "2004",
-#    "categories": [
-#        "Baggins, Bilbo (Fictitious character)"
-#      ],
-#    "average_rating": 5,
-#    "ratings_count": 2,
-#    "thumbnail": "http://books.google.com/books/content?id=YyXoAAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-#}
