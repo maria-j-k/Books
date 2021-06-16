@@ -4,7 +4,6 @@ from api.models import Author, Book, Category
 
 
 class AuthorSerializer(serializers.ModelSerializer):
-    
     class Meta:
         model = Author
         fields = ('name',)
@@ -25,7 +24,6 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    
     class Meta:
         model = Category
         fields = ('name',)
@@ -35,7 +33,6 @@ class CategorySerializer(serializers.ModelSerializer):
                 }
             }
 
-    
     def create(self, validated_data):
         return Category.objects.create(name=validated_data['name'])
     
@@ -47,13 +44,12 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
     authors = serializers.StringRelatedField(many=True)   
+    categories = serializers.StringRelatedField(many=True)   
 
     class Meta:
         model = Book
-        fields = ('title', 'published_date', 
-                'thumbnail', 'authors', 'categories', 
-                'average_rating', 'ratings_count',
-                )
+        fields = ('title', 'authors', 'published_date', 'categories',
+                'average_rating', 'ratings_count', 'thumbnail')
 
 
 class BookWriteSerializer(serializers.ModelSerializer):
@@ -63,10 +59,8 @@ class BookWriteSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Book
-        fields = ('id', 'title', 'published_date', 'thumbnail', 'authors', 
-                'categories', 'average_rating', 'ratings_count',
-                )
-
+        fields = ('id', 'title', 'authors', 'published_date', 'categories',
+                'average_rating', 'ratings_count', 'thumbnail')
 
     def create(self, validated_data):
         authors_data = validated_data.pop('authors')
