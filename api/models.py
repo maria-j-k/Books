@@ -43,6 +43,28 @@ class Category(models.Model):
         return self.name
 
 
+class BookManager(models.Manager):
+
+    def create_or_update(self, id, title, published_date, 
+            thumbnail, ratings_count, average_rating):
+        book = Book.objects.filter(id=id).first()
+        if book:
+            book.id=id 
+            book.title=title 
+            book.published_date=published_date 
+            book.thumbnail=thumbnail 
+            book.ratings_count=ratings_count 
+            book.average_rating=average_rating
+        else:
+            book = Book(id=id, title=title, 
+            published_date=published_date, 
+            thumbnail=thumbnail, 
+            ratings_count=ratings_count, 
+            average_rating=average_rating)
+        book.save()
+        return book
+
+
 class Book(models.Model):
     id = models.CharField(primary_key=True, editable=False, max_length=100)
     title = models.CharField(max_length=255)
@@ -52,6 +74,7 @@ class Book(models.Model):
     categories = models.ManyToManyField(Category)
     ratings_count = models.IntegerField(null=True)
     average_rating = models.FloatField(null=True)
+    objects = BookManager()
 
     def __str__(self):
         return self.title

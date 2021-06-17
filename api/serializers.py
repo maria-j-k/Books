@@ -65,7 +65,7 @@ class BookWriteSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         authors_data = validated_data.pop('authors')
         categories_data = validated_data.pop('categories')
-        book, _ = Book.objects.update_or_create(**validated_data)
+        book = Book.objects.create_or_update(**validated_data)
         for author in authors_data:
             a = Author.objects.create(**author)
             book.authors.add(a)
