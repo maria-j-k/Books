@@ -74,3 +74,6 @@ class BookWriteSerializer(serializers.ModelSerializer):
             book.categories.add(cat)
         return book
 
+
+class QSerializer(serializers.Serializer):
+    q = serializers.CharField(max_length=200)

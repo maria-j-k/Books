@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 
 from api.models import Book
-from api.serializers import BookSerializer, BookWriteSerializer
+from api.serializers import BookSerializer, BookWriteSerializer, QSerializer
 from api.utils import download_books
 from api.filters import BookFilterSet
 
@@ -28,12 +28,13 @@ class BookViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class BookWriteView(generics.CreateAPIView):
-    serializer_class = BookWriteSerializer
+    serializer_class = QSerializer
+    queryset = Book.objects.all()
 
     def post(self, request, *args, **kwargs):
         q = self.request.data.get('q')
         books = download_books(q)
-        serializer = self.serializer_class(data=books, many=True)
+        serializer = BookWriteSerializer(data=books, many=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
