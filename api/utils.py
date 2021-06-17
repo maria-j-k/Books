@@ -3,6 +3,7 @@ import requests
 
 def download_books(search_term):
     url = 'https://www.googleapis.com/books/v1/volumes?q={}'
+    print(f'downloading {url.format(search_term)}')
     response = requests.get(url.format(search_term))
     results = response.json()['items']
     volumes = []
