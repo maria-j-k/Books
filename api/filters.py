@@ -13,11 +13,20 @@ class BookFilterSet(django_filters.FilterSet):
     category = django_filters.CharFilter(
             field_name='categories__name', 
             lookup_expr='iexact')
+    in_title = django_filters.CharFilter(
+            field_name='title', 
+            lookup_expr='icontains')
     title = django_filters.CharFilter(
             field_name='title', 
             lookup_expr='iexact')
     published_date = django_filters.NumberFilter(field_name='published_date')
     ratings_count=django_filters.NumberFilter(field_name='ratings_count')
+    ratings_count_gt=django_filters.NumberFilter(
+            field_name='ratings_count',
+            lookup_expr='gt')
+    ratings_count_lt=django_filters.NumberFilter(
+            field_name='ratings_count',
+            lookup_expr ='lt')
     average_rating__gt = django_filters.NumberFilter(
             field_name='average_rating', 
             lookup_expr='gt')
