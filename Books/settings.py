@@ -11,7 +11,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 try:
-    from Books.local_settings import SECRETKEY
+    from Books.local_settings import SECRETKEY 
+    print(f'secretkey is {SECRETKEY}')
 except ModuleNotFoundError:
     print('You must configure your secret key in the local_settings.py')
     SECRETKEY = None
