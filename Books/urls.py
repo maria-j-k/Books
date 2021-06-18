@@ -13,7 +13,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('db/', views.BookWriteView.as_view(), name='db'),
     path('books/', include(router.urls)),
-    path('openapi', get_schema_view(
+    path('openapi/', get_schema_view(
         title="Books REST API",
         description="API",
         version="1.0.0"
