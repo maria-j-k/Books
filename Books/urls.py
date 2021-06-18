@@ -7,12 +7,12 @@ from api import views
 
 
 router = routers.DefaultRouter()
-router.register(r'books', views.BookViewSet)
+router.register(r'', views.BookViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('db/', views.BookWriteView.as_view(), name='db'),
-    path('', include(router.urls)),
+    path('books/', include(router.urls)),
     path('openapi', get_schema_view(
         title="Books REST API",
         description="API",
