@@ -21,7 +21,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
 
 DEBUG = os.environ.get('DEBUG', '') != 'False' 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://books-api-1.herokuapp.com/']
 
 
 # Application definition
