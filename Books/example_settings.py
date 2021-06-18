@@ -1,4 +1,4 @@
-SECRET_KEY = '<your_secret_key>'
+SECRETKEY = '<your_secret_key>'
 
 DATABASES = {
         'default': {
