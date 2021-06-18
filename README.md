@@ -19,7 +19,7 @@ Books REST API
     * ratings_count_gt (search for books with a ratings count greater than the given number)
     * average_rating_lt (search for books with a average rating less than the given number)
     * average_rating_gt (search for books with a average rating greater than the given number)
-  * /?sort=[search_term] allows sorting. Default: ascending order, for descending order use '-'. (Ex: /books?sort=-published_date)
+  * /?sort=[search_term] allows sorting. (Ex: /books?sort=-published_date)
 
 ### db/ 
 Downloads books from google api and saves in application's database.
