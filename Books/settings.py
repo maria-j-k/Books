@@ -22,7 +22,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
 DEBUG = os.environ.get('DEBUG', '') != 'False' 
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'books-api-1.herokuapp.com']
-#CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
