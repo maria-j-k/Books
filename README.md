@@ -39,7 +39,7 @@ Project is created with:
 * Django 
 * Django Rest Framework
 * PostgreSQL
-* 
+
 For further details see `requirements.txt`
 
 ## Setup
