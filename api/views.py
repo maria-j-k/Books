@@ -18,7 +18,7 @@ class BookViewSet(viewsets.ReadOnlyModelViewSet):
     filterset_class = BookFilterSet
 
     def get_queryset(self):
-        queryset = super(BookViewSet, self).get_queryset()
+        queryset = super().get_queryset()
 
         order_by = self.request.query_params.get('sort', '')
         if order_by:
