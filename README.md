@@ -47,7 +47,7 @@ To run the project locally:
 * clone the repository locally
 * create virtual environment using Python 3.6.9
 * install `requirements.txt`
-* replace placeholders in `backend/example_settings.py` using your own creditentials
-* rename `backend/example_settings.py` to `backend/local_settings.py` 
+* replace placeholders in `.env.example` using your own creditentials
+* rename `.env.example` to `.env` 
 * run `python manage.py migrate`
 * run `python manage.py runserver`
